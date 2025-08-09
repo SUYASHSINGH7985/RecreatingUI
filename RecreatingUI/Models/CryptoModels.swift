@@ -6,11 +6,3 @@ struct CryptoAsset: Identifiable {
     let value: String
     let changePercentage: String
 }
-
-struct Transaction: Identifiable {
-    let id = UUID()
-    let type: String // "Receive" or "Send"
-    let amount: String
-    let currency: String
-    let date: String
-}

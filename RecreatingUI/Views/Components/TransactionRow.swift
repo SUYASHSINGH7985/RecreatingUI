@@ -1,12 +1,3 @@
-//
-//  TransactionRow.swift
-//  RecreatingUI
-//
-//  Created by Suyash Singh on 09/08/25.
-//
-
-
-// In Views/Components/TransactionRow.swift
 import SwiftUI
 
 struct TransactionRow: View {
@@ -16,9 +7,11 @@ struct TransactionRow: View {
         HStack {
             Image(systemName: transaction.type == "Receive" ? "arrow.down" : "arrow.up")
                 .foregroundColor(transaction.type == "Receive" ? .green : .red)
+                .frame(width: 30)
             
             VStack(alignment: .leading) {
                 Text(transaction.type)
+                    .font(.headline)
                 Text(transaction.date)
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -28,6 +21,7 @@ struct TransactionRow: View {
             
             VStack(alignment: .trailing) {
                 Text(transaction.amount)
+                    .font(.headline)
                 Text(transaction.currency)
                     .font(.caption)
             }

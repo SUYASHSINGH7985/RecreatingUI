@@ -1,28 +1,26 @@
-//
-//  AssetRow.swift
-//  RecreatingUI
-//
-//  Created by Suyash Singh on 09/08/25.
-//
-
-
-// In Views/Components/AssetRow.swift
 import SwiftUI
 
 struct AssetRow: View {
-    let asset: CryptoAsset
+    let asset: Asset
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(asset.name)
                     .font(.headline)
-                Text(asset.value)
+                Text(asset.symbol)
+                    .font(.subheadline)
                     .foregroundColor(.gray)
             }
+            
             Spacer()
-            Text(asset.changePercentage)
-                .foregroundColor(asset.changePercentage.hasPrefix("+") ? .green : .red)
+            
+            VStack(alignment: .trailing) {
+                Text(asset.value)
+                    .font(.headline)
+                Text(asset.change)
+                    .foregroundColor(asset.change.hasPrefix("+") ? .green : .red)
+            }
         }
         .padding(.vertical, 8)
     }
