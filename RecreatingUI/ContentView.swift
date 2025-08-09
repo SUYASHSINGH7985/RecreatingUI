@@ -1,25 +1,18 @@
-//
-//  ContentView.swift
-//  RecreatingUI
-//
-//  Created by Suyash Singh on 09/08/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-            
+        TabView(selection: $selectedTab) {
+            PortfolioView().tag(0)
+            ExchangeView().tag(1)
+            RecordView().tag(2)
+            WalletView().tag(3)
         }
-        .padding()
+        .overlay(alignment: .bottom) {
+            CustomTabBar(selectedTab: $selectedTab)
+        }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
-}
-
-#Preview {
-    ContentView()
 }
