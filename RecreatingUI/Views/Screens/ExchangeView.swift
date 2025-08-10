@@ -91,21 +91,7 @@ struct ExchangeView: View {
                 
                 Spacer()
                 
-                // MARK: - Bottom Nav Bar
-                HStack {
-                    NavItem(icon: "chart.bar", label: "Analytics", isSelected: false)
-                    NavItem(icon: "arrow.2.squarepath", label: "Exchange", isSelected: true)
-                    NavItem(icon: "doc.text", label: "Record", isSelected: false)
-                    NavItem(icon: "wallet.pass", label: "Wallet", isSelected: false)
-                }
-                .padding()
-                .background(
-                    Color.black.opacity(0.8)
-                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                        .shadow(color: Color.blue.opacity(0.5), radius: 20, x: 0, y: 5)
-                )
-                .padding(.horizontal, 8)
-                .padding(.bottom, 10)
+              
             }
         }
     }

@@ -42,12 +42,7 @@ struct CryptoPortfolioView: View {
                 .padding(.bottom, 100)
             }
             
-            VStack {
-                Spacer()
-                floatingBottomBar
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 24)
-            }
+         
         }
     }
     
@@ -231,8 +226,8 @@ struct CryptoPortfolioView: View {
                     path.move(to: CGPoint(x: xPos, y: 0))
                     path.addLine(to: CGPoint(x: xPos, y: geometry.size.height))
                 }
-                .stroke(Color.white.opacity(100), lineWidth: 1)
-
+                .stroke(Color.white.opacity(0.9), lineWidth: 1)
+                
                 
                 // Marker label
                 VStack(spacing: 1) {
@@ -243,7 +238,7 @@ struct CryptoPortfolioView: View {
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(.white.opacity(0.9))
                 }
-                .position(x: geometry.size.width * 0.72-60, y: -0.5)
+                .position(x: geometry.size.width * 0.72-60, y: 20)
             }
         }
     }
@@ -280,52 +275,12 @@ struct CryptoPortfolioView: View {
         }
     }
     
-    // MARK: - Bottom Bar
-    var floatingBottomBar: some View {
-        HStack(spacing: 16) {
-            HStack(spacing: 0) {
-                bottomBarButton(icon: "chart.line.uptrend.xyaxis", title: "Analytics", active: true)
-                bottomBarButton(icon: "arrow.2.squarepath", title: "Exchange")
-                bottomBarButton(icon: "record.circle", title: "Records")
-                bottomBarButton(icon: "wallet.pass", title: "Wallet")
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .background(Color.white.opacity(0.08))
-            .cornerRadius(24)
-            
-            Button(action: {}) {
-                Image(systemName: "plus")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(width: 50, height: 50)
-                    .background(LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .clipShape(Circle())
-                    .shadow(color: .blue.opacity(0.3), radius: 8, x: 0, y: 4)
-            }
-        }
-    }
     
-    func bottomBarButton(icon: String, title: String, active: Bool = false) -> some View {
-        Button(action: {}) {
-            VStack(spacing: 4) {
-                Image(systemName: icon)
-                    .font(.system(size: 18, weight: active ? .bold : .regular))
-                    .foregroundColor(active ? .white : .white.opacity(0.6))
-                
-                Text(title)
-                    .font(.system(size: 10, weight: active ? .bold : .medium))
-                    .foregroundColor(active ? .white : .white.opacity(0.6))
-            }
-            .frame(maxWidth: .infinity)
+    
+    struct CryptoPortfolioView_Previews: PreviewProvider {
+        static var previews: some View {
+            CryptoPortfolioView()
+                .preferredColorScheme(.dark)
         }
-    }
-}
-
-struct CryptoPortfolioView_Previews: PreviewProvider {
-    static var previews: some View {
-        CryptoPortfolioView()
-            .preferredColorScheme(.dark)
     }
 }

@@ -14,6 +14,8 @@ struct Asset: Identifiable {
     let symbol: String
     let value: String
     let change: String
+    let amount: Double
+    let priceUSD: Double
     let balance: String?
 }
 
