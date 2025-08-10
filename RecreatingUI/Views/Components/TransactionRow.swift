@@ -1,5 +1,7 @@
 import SwiftUI
 
+// Simple row to show a transaction with an icon, title, date, currency, and amount
+// Just a clean little card with some opacity and rounded corners to keep things neat
 struct TransactionRow: View {
     var title: String
     var date: String
@@ -11,7 +13,7 @@ struct TransactionRow: View {
         HStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.white.opacity(0.06))
+                    .fill(Color.white.opacity(0.06))  // subtle background for icon
                     .frame(width: 40, height: 40)
                 Image(systemName: icon)
                     .foregroundColor(.white)
@@ -21,7 +23,7 @@ struct TransactionRow: View {
                     .foregroundColor(.white)
                     .font(.system(size: 14, weight: .medium))
                 Text(date)
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(.white.opacity(0.5))  // lighter color for less emphasis
                     .font(.system(size: 12))
             }
             Spacer()
@@ -35,7 +37,7 @@ struct TransactionRow: View {
             }
         }
         .padding()
-        .background(Color.black.opacity(0.8))
+        .background(Color.black.opacity(0.8))  // card background with transparency
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 }

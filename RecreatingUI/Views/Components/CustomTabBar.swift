@@ -1,5 +1,8 @@
 import SwiftUI
 
+// Bottom tab bar with 4 tabs and a cool little animated highlight for the selected one
+// Also shows a floating plus button only on the first tab — placeholder action for now
+// Nothing too complicated, just some nice SwiftUI animations and clean layout
 struct CustomTabBar: View {
     @Binding var selectedTab: Int
     @Namespace private var animation
@@ -9,11 +12,9 @@ struct CustomTabBar: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // Background (clear to allow gradient from parent view)
-            Color.clear
+            Color.clear // let parent background show through
             
             HStack(spacing: 0) {
-                // Tab container with rounded rectangle
                 HStack(spacing: 0) {
                     ForEach(0..<tabIcons.count, id: \.self) { index in
                         Button(action: {
@@ -59,10 +60,10 @@ struct CustomTabBar: View {
                 )
                 .frame(height: 60)
                 
-                // Plus button, separate and to the right, only visible for Analytics
+                // Plus button only shows when Analytics tab is active — action TBD
                 if selectedTab == 0 {
                     Button(action: {
-                        // Plus button action here
+                        // Add your plus button action here
                     }) {
                         ZStack {
                             Circle()
@@ -75,9 +76,9 @@ struct CustomTabBar: View {
                         }
                         .shadow(color: Color.blue.opacity(0.3), radius: 6, y: 3)
                     }
-                    .offset(y: -8) // Slightly raised effect
-                    .padding(.leading, 8) // Gap from the tab container
-                    .padding(.trailing, 12) // Margin from the screen edge
+                    .offset(y: -8) // makes it float a bit
+                    .padding(.leading, 8)
+                    .padding(.trailing, 12)
                     .buttonStyle(PlainButtonStyle())
                 }
             }
@@ -87,9 +88,6 @@ struct CustomTabBar: View {
         .padding(.horizontal, 8)
     }
 }
-
-// Example integration into ExchangeView
-
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {

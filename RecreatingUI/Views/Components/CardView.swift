@@ -1,5 +1,7 @@
 import SwiftUI
 
+// A simple card container to wrap any content with padding, background, rounded corners, and shadow
+// Keeps UI consistent and looks neat — pretty standard stuff
 struct CardView<Content: View>: View {
     let content: Content
     
