@@ -5,7 +5,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            PortfolioView().tag(0)
+            CryptoPortfolioView().tag(0)
             ExchangeView().tag(1)
             RecordView().tag(2)
             WalletView().tag(3)

@@ -1,11 +1,10 @@
-// RecreatingUIApp.swift
 import SwiftUI
 
 @main
 struct RecreatingUIApp: App {
     var body: some Scene {
         WindowGroup {
-            TabBar()
+            CryptoPortfolioView()   // Make sure you provide your root view here inside the closure
         }
     }
 }

@@ -1,92 +1,159 @@
-// ExchangeView.swift
 import SwiftUI
 
 struct ExchangeView: View {
-    @State private var ethAmount = "2.640"
-    @State private var inrAmount = "4,65,006.44"
-    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                // ETH Section
-                VStack(alignment: .leading) {
-                    Text("ETH").font(.headline)
-                    TextField("", text: $ethAmount)
-                        .font(.system(size: 24, weight: .bold))
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                // MARK: - Top Bar
+                HStack {
+                    Image(systemName: "line.horizontal.3")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "bell")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                }
+                .padding(.horizontal)
+                .padding(.top, 10)
+                
+                // MARK: - Blue Gradient Card
+                ZStack {
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color(red: 108/255, green: 64/255, blue: 255/255),
+                            Color(red: 44/255, green: 29/255, blue: 170/255)
+                        ]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .frame(height: 180)
+                    .shadow(color: Color.purple.opacity(0.3), radius: 20, x: 0, y: 10)
                     
-                    HStack {
-                        Text("Send")
-                            .foregroundColor(.gray)
-                        Spacer()
-                        Text("Balance: 10,254")
-                            .foregroundColor(.gray)
+                    VStack(spacing: 8) {
+                        Text("INR")
+                            .font(.system(size: 12, weight: .medium))
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 12)
+                            .background(Color.white.opacity(0.15))
+                            .clipShape(Capsule())
+                            .foregroundColor(.white)
+                        
+                        Text("1,57,342.05")
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        HStack(spacing: 4) {
+                            Text("₹ 1,342")
+                                .font(.system(size: 14))
+                                .foregroundColor(.white.opacity(0.8))
+                            Text("+4.6%")
+                                .font(.system(size: 14))
+                                .foregroundColor(.green)
+                        }
                     }
                 }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
+                .padding(.horizontal)
+                .padding(.top, 10)
                 
-                // INR Section
-                VStack(alignment: .leading) {
-                    Text("INR").font(.headline)
-                    TextField("", text: $inrAmount)
-                        .font(.system(size: 24, weight: .bold))
-                    
-                    HStack {
-                        Text("Receive")
-                            .foregroundColor(.gray)
-                        Spacer()
-                        Text("Balance: 4,35,804")
-                            .foregroundColor(.gray)
-                    }
+                // MARK: - Action Buttons
+                HStack(spacing: 24) {
+                    CircleButton(icon: "arrow.up")
+                    CircleButton(icon: "plus")
+                    CircleButton(icon: "arrow.down")
                 }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
+                .padding(.top, -22)
                 
-                // Exchange Details
+                // MARK: - Transactions Header
+                HStack {
+                    Text("Transactions")
+                        .font(.system(size: 14))
+                        .foregroundColor(.white.opacity(0.7))
+                    Spacer()
+                    Text("Last 4 days")
+                        .font(.system(size: 14))
+                        .foregroundColor(.white.opacity(0.7))
+                }
+                .padding(.horizontal)
+                .padding(.top, 16)
+                
+                // MARK: - Transactions List
                 VStack(spacing: 12) {
-                    HStack {
-                        Text("Rate")
-                        Spacer()
-                        Text("1ETH = ₹1,76,138.80")
-                    }
-                    
-                    HStack {
-                        Text("Spread")
-                        Spacer()
-                        Text("0.2%")
-                    }
-                    
-                    HStack {
-                        Text("Gas fee")
-                        Spacer()
-                        Text("₹422.73")
-                    }
-                    
-                    Divider()
-                    
-                    HStack {
-                        Text("You will receive")
-                            .font(.headline)
-                        Spacer()
-                        Text("₹1,75,716.07")
-                            .font(.headline)
-                    }
+                    TransactionRow(title: "Receive", date: "20 March", currency: "BTC", amount: "+0.002126", icon: "arrow.down")
+                    TransactionRow(title: "Sent", date: "19 March", currency: "ETH", amount: "+0.003126", icon: "arrow.up")
+                    TransactionRow(title: "Send", date: "18 March", currency: "LTC", amount: "+0.02126", icon: "arrow.up")
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.top, 8)
                 
-                Button("Exchange") {
-                    // Exchange logic
+                Spacer()
+                
+                // MARK: - Bottom Nav Bar
+                HStack {
+                    NavItem(icon: "chart.bar", label: "Analytics", isSelected: false)
+                    NavItem(icon: "arrow.2.squarepath", label: "Exchange", isSelected: true)
+                    NavItem(icon: "doc.text", label: "Record", isSelected: false)
+                    NavItem(icon: "wallet.pass", label: "Wallet", isSelected: false)
                 }
-                .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(12)
+                .background(
+                    Color.black.opacity(0.8)
+                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                        .shadow(color: Color.blue.opacity(0.5), radius: 20, x: 0, y: 5)
+                )
+                .padding(.horizontal, 8)
+                .padding(.bottom, 10)
             }
-            .padding()
         }
-        .navigationTitle("Exchange")
+    }
+}
+
+// MARK: - Reusable Components
+
+struct CircleButton: View {
+    var icon: String
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color.white.opacity(0.08))
+                .frame(width: 50, height: 50)
+            Image(systemName: icon)
+                .foregroundColor(.white)
+        }
+    }
+}
+
+struct NavItem: View {
+    var icon: String
+    var label: String
+    var isSelected: Bool
+    var body: some View {
+        VStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 18))
+                .foregroundColor(isSelected ? .blue : .white.opacity(0.7))
+            Text(label)
+                .font(.system(size: 12))
+                .foregroundColor(isSelected ? .blue : .white.opacity(0.7))
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .fill(Color.black.opacity(0.8))
+                .shadow(color: Color.blue.opacity(0.5), radius: 20, x: 0, y: 5)
+        )
+
+    }
+}
+
+// MARK: - Preview
+struct ExchangeView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExchangeView()
+            .preferredColorScheme(.dark)
     }
 }
