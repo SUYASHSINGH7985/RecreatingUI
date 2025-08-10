@@ -39,11 +39,3 @@ struct TransactionRow: View {
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 }
-
-struct TransactionRow_Previews: PreviewProvider {
-    static var previews: some View {
-        TransactionRow(title: "Receive", date: "20 March", currency: "BTC", amount: "+0.002126", icon: "arrow.down")
-            .background(Color.black)
-            .previewLayout(.sizeThatFits)
-    }
-}
