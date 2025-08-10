@@ -5,6 +5,7 @@ struct CryptoPortfolioView: View {
     
     var body: some View {
         ZStack {
+            // dark background color
             Color(red: 0.05, green: 0.05, blue: 0.06)
                 .ignoresSafeArea()
             
@@ -15,6 +16,7 @@ struct CryptoPortfolioView: View {
                     chartAreaWithMarker.frame(height: 220).padding(.horizontal, 8)
                     
                     HStack(spacing: 16) {
+                        // card for Bitcoin info
                         cryptoAssetCard(
                             icon: "bitcoinsign.circle",
                             name: "Bitcoin",
@@ -24,6 +26,7 @@ struct CryptoPortfolioView: View {
                             color: .orange
                         )
                         
+                        // card for Ethereum info
                         cryptoAssetCard(
                             icon: "e.circle",
                             name: "Ethereum",
@@ -35,18 +38,17 @@ struct CryptoPortfolioView: View {
                     }
                     .padding(.horizontal, 16)
                     
+                    // recent transactions section below
                     recentTransactions.padding(.top, 16)
                     Spacer()
                 }
                 .padding(.top, 16)
                 .padding(.bottom, 100)
             }
-            
-         
         }
     }
     
-    // MARK: - Top Card
+    // top card with portfolio value and toggle buttons
     var topCard: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .topLeading) {
@@ -103,6 +105,7 @@ struct CryptoPortfolioView: View {
                             
                             Spacer()
                             
+                            // buttons to toggle between fiat and crypto view
                             HStack(spacing: 20) {
                                 Button(action: { showFiat = true }) {
                                     Image(systemName: "banknote")
@@ -125,6 +128,7 @@ struct CryptoPortfolioView: View {
         }
     }
     
+    // reusable card for crypto assets with icon, name, value, and change
     func cryptoAssetCard(icon: String, name: String, symbol: String, value: String, change: String, color: Color) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
@@ -162,22 +166,21 @@ struct CryptoPortfolioView: View {
         .cornerRadius(12)
     }
     
-    // MARK: - Time Selector
+    // time period selector below the top card
     var timeSelector: some View {
         HStack(spacing: 0) {
             ForEach(["1h", "8h", "1d", "1w", "1m", "6m", "1y"], id: \.self) { period in
                 Text(period)
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(period == "6m" ? .white : .white.opacity(0.5))
+                    .foregroundColor(period == "6m" ? .white : .white.opacity(0.5)) // highlight 6m
                     .frame(maxWidth: .infinity)
             }
         }
     }
     
-    // MARK: - Ultra Smooth Chart with Catmull-Rom Spline
+    // chart area with smooth curve and a vertical marker line
     var chartAreaWithMarker: some View {
         ZStack {
-            // Remove the bar background for cleaner look
             GeometryReader { geometry in
                 let points = [
                     CGPoint(x: 0, y: geometry.size.height * 0.7),
@@ -188,7 +191,7 @@ struct CryptoPortfolioView: View {
                     CGPoint(x: geometry.size.width, y: geometry.size.height * 0.25)
                 ]
                 
-                // Catmull-Rom Spline for perfectly smooth curve
+                // smooth Catmull-Rom spline path
                 Path { path in
                     guard points.count >= 4 else { return }
                     
@@ -200,7 +203,6 @@ struct CryptoPortfolioView: View {
                         let p2 = points[i+1]
                         let p3 = points[i+2]
                         
-                        // Catmull-Rom control points
                         let control1 = CGPoint(
                             x: p1.x + (p2.x - p0.x) / 3,
                             y: p1.y + (p2.y - p0.y) / 3
@@ -215,12 +217,12 @@ struct CryptoPortfolioView: View {
                     }
                 }
                 .stroke(
-                    Color.green, // Solid green color as requested
+                    Color.green,
                     style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
                 )
                 .shadow(color: .green.opacity(0.3), radius: 8, x: 0, y: 4)
                 
-                // Vertical marker line
+                // vertical marker line
                 Path { path in
                     let xPos = geometry.size.width * 0.72
                     path.move(to: CGPoint(x: xPos, y: 0))
@@ -228,8 +230,7 @@ struct CryptoPortfolioView: View {
                 }
                 .stroke(Color.white.opacity(0.9), lineWidth: 1)
                 
-                
-                // Marker label
+                // marker label with date and value
                 VStack(spacing: 1) {
                     Text("24 March")
                         .font(.system(size: 12, weight: .regular))
@@ -243,7 +244,7 @@ struct CryptoPortfolioView: View {
         }
     }
     
-    // MARK: - Recent Transactions
+    // recent transactions shown below everything else
     var recentTransactions: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Recent Transactions")
@@ -274,7 +275,6 @@ struct CryptoPortfolioView: View {
             .padding(16)
         }
     }
-    
     
     
     struct CryptoPortfolioView_Previews: PreviewProvider {

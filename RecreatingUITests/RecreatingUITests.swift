@@ -11,7 +11,8 @@ import Testing
 struct RecreatingUITests {
 
     @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+        // Just a quick test stub — add your test logic here when ready.
+        // Use #expect(...) to check if stuff works as it should.
     }
 
 }

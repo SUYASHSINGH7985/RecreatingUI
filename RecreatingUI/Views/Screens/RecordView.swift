@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RecordView: View {
+    // simple model for each record item
     struct Record: Identifiable {
         let id = UUID()
         let title: String
@@ -8,6 +9,7 @@ struct RecordView: View {
         let iconName: String
     }
 
+    // sample list of records to show
     let records = [
         Record(title: "Meeting with Team", date: "Aug 10, 2025", iconName: "person.3.fill"),
         Record(title: "Project Milestone", date: "Aug 9, 2025", iconName: "flag.fill"),
@@ -20,8 +22,10 @@ struct RecordView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 16) {
+                    // loop through all records and display each row
                     ForEach(records) { record in
                         HStack(spacing: 16) {
+                            // icon container with purple background
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color.purple.opacity(0.3))
@@ -32,6 +36,7 @@ struct RecordView: View {
                                     .foregroundColor(.white)
                             }
 
+                            // title and date stacked vertically
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(record.title)
                                     .font(.headline)
@@ -49,7 +54,7 @@ struct RecordView: View {
                     }
                 }
                 .padding()
-                .background(Color.black.ignoresSafeArea())
+                .background(Color.black.ignoresSafeArea()) // background for whole scroll view
             }
             .navigationTitle("Records")
             .navigationBarTitleDisplayMode(.inline)

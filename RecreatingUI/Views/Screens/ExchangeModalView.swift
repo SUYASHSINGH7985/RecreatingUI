@@ -7,7 +7,7 @@ struct ExchangeModalView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Header
+            // header stuff
             HStack {
                 Text("Exchange")
                     .font(.system(size: 20, weight: .semibold))
@@ -21,7 +21,7 @@ struct ExchangeModalView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 16)
             
-            // ETH Section
+            // eth input section
             VStack(spacing: 12) {
                 HStack {
                     Text("ETH ▼")
@@ -50,7 +50,7 @@ struct ExchangeModalView: View {
             .cornerRadius(12)
             .padding(.horizontal, 16)
             
-            // Swap Button
+            // button to swap values, doesn't do anything yet
             Button(action: {}) {
                 Image(systemName: "arrow.up.arrow.down")
                     .font(.system(size: 20))
@@ -62,7 +62,7 @@ struct ExchangeModalView: View {
             }
             .padding(.vertical, 8)
             
-            // INR Section
+            // inr input section, same deal as eth
             VStack(spacing: 12) {
                 HStack {
                     Text("INR ▼")
@@ -91,7 +91,7 @@ struct ExchangeModalView: View {
             .cornerRadius(12)
             .padding(.horizontal, 16)
             
-            // Exchange Details
+            // showing exchange rates and fees and all that
             VStack(spacing: 12) {
                 HStack {
                     Text("Rate")
@@ -141,7 +141,7 @@ struct ExchangeModalView: View {
             .cornerRadius(12)
             .padding(16)
             
-            // Exchange Button
+            // main exchange button, no logic yet tho
             Button(action: {}) {
                 Text("Exchange")
                     .font(.system(size: 16, weight: .semibold))

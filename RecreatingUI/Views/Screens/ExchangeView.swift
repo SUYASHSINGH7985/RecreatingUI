@@ -9,16 +9,16 @@ struct ExchangeView: View {
             
             ScrollView {
                 VStack(spacing: 24) {
-                    // MARK: - Top Navigation
+                    // top nav stuff
                     TopNavigationView()
                     
-                    // MARK: - Balance Card
+                    // card showing balance
                     BalanceCardView()
                     
-                    // MARK: - Action Buttons
+                    // buttons for actions
                     ActionButtonsView(showExchangeModal: $showExchangeModal)
                     
-                    // MARK: - Transactions
+                    // transactions list below
                     TransactionsSectionView()
                 }
                 .padding(.horizontal, 16)
@@ -26,6 +26,7 @@ struct ExchangeView: View {
                 .padding(.bottom, 24)
             }
         }
+        // modal sheet for exchange popup
         .sheet(isPresented: $showExchangeModal) {
             ExchangeModalView(isPresented: $showExchangeModal)
                 .preferredColorScheme(.dark)
@@ -33,7 +34,7 @@ struct ExchangeView: View {
     }
 }
 
-// MARK: - Top Navigation
+// top navigation with menu & bell icons
 struct TopNavigationView: View {
     var body: some View {
         HStack {
@@ -47,7 +48,7 @@ struct TopNavigationView: View {
     }
 }
 
-// MARK: - Balance Card
+// balance card with gradient and amounts
 struct BalanceCardView: View {
     var body: some View {
         ZStack {
@@ -89,7 +90,7 @@ struct BalanceCardView: View {
     }
 }
 
-// MARK: - Currency Badge
+// little pill badge for currency type
 struct CurrencyBadgeView: View {
     let currency: String
     
@@ -104,7 +105,7 @@ struct CurrencyBadgeView: View {
     }
 }
 
-// MARK: - Action Buttons
+// row of action buttons, middle one opens modal
 struct ActionButtonsView: View {
     @Binding var showExchangeModal: Bool
     
@@ -112,16 +113,16 @@ struct ActionButtonsView: View {
         HStack {
             Spacer()
             CircleButton(icon: "arrow.up") {
-                // Optional: Handle "arrow.up" button action
+                // maybe add something here later
             }
             Spacer()
             CircleButton(icon: "plus") {
-                // Open the ExchangeModalView
+                // open exchange modal
                 showExchangeModal = true
             }
             Spacer()
             CircleButton(icon: "arrow.down") {
-                // Optional: Handle "arrow.down" button action
+                // another placeholder action
             }
             Spacer()
         }
@@ -129,6 +130,7 @@ struct ActionButtonsView: View {
     }
 }
 
+// reusable round button with icon
 struct CircleButton: View {
     let icon: String
     var action: () -> Void = {}
@@ -148,7 +150,7 @@ struct CircleButton: View {
     }
 }
 
-// MARK: - Transactions Section
+// list of transactions shown below everything else
 struct TransactionsSectionView: View {
     var body: some View {
         VStack(spacing: 16) {
@@ -189,5 +191,3 @@ struct TransactionsSectionView: View {
         }
     }
 }
-
-

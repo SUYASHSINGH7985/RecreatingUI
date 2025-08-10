@@ -4,7 +4,7 @@ import SwiftUI
 struct RecreatingUIApp: App {
     var body: some Scene {
         WindowGroup {
-            MainTabView()   // Make sure you provide your root view here inside the closure
+            MainTabView()   // Root view of the app — main tab container
         }
     }
 }
