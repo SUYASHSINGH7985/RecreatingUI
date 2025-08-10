@@ -45,5 +45,45 @@ Crypt Portfolio
 - Quick-access asset cards displaying Bitcoin and Ethereum info including price and percentage change.
 - Recent transactions listed below with timestamps and amounts.
 
+## Exchange
+
+- Modal view for cryptocurrency exchange.
+- Editable input fields for ETH and INR amounts.
+- Shows current exchange rate, spread, and gas fees.
+- Swap button to toggle currency directions.
+- “Exchange” button for initiating the swap (logic not yet implemented).
+
+## Record
+
+- Scrollable list of user activities such as meetings, code reviews, deployments.
+- Each record presented as a card with icon, title, and date.
+- Clean, consistent dark-themed UI with shadows and rounded corners.
+
+## Wallet
+
+- Simple placeholder screen.
+- Navigation title included.
+- Designed for future expansion with wallet management features.
+
+---
+
+## Known Limitations & Areas for Improvement
+
+- **Static Data:** All portfolio, exchange, and transaction data is hardcoded for demonstration purposes. Needs API integration to fetch real-time data.
+- **Wallet Functionality:** Wallet screen is a placeholder and lacks UI and feature implementation.
+- **Exchange Logic:** Currently no backend integration or actual currency exchange logic.
+- **Accessibility:** VoiceOver, dynamic font scaling, and other accessibility features are not yet supported.
+- **Light Mode:** The app supports only dark mode currently; adding light mode would improve usability.
+- **Testing:** Basic test scaffolding exists but full unit and UI test coverage is missing.
+
+---
+
+## Contribution
+
+Contributions are welcome! Feel free to:
+
+- Open issues to report bugs or suggest features.
+- Submit pull requests to improve functionality or fix issues.
+
 
 
