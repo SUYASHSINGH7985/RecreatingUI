@@ -85,5 +85,5 @@ Contributions are welcome! Feel free to:
 - Open issues to report bugs or suggest features.
 - Submit pull requests to improve functionality or fix issues.
 
-
-
+##Quick Demo
+- [InaNutshell](https://drive.google.com/file/d/15_M5H94v8tg4WSP7oPF_qZenCG9momVO/view?usp=sharing)
